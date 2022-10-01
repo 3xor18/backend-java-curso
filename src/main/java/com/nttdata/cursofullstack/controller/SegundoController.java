@@ -15,7 +15,7 @@ public class SegundoController {
     @GetMapping
     public ResponseEntity<?> funcionUno(){
        log.info("Ejecutando en SegundoController la FuncionUno");
-       return ResponseEntity.status(HttpStatus.OK).body("Hola desde SegundoController Ejecute la FuncionUno");
+       return ResponseEntity.status(HttpStatus.OK).body("Hola desde SegundoController Ejecute la FuncionUno GIT");
     }
 
     @GetMapping("/{nombre}")
