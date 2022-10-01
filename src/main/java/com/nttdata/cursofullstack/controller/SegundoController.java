@@ -1,6 +1,5 @@
 package com.nttdata.cursofullstack.controller;
 
-import com.nttdata.cursofullstack.dtos.UsuarioDto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +30,9 @@ public class SegundoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> funcionTres(@RequestBody UsuarioDto dataEntrante){
+    public ResponseEntity<?> funcionTres(){
         log.info("Ejecutando en SegundoController la funcionTres");
-        return ResponseEntity.status(HttpStatus.OK).body("Hola desde SegundoController Ejecute la funcionTres con Nombre:"+
-                dataEntrante.getName()+" y el password:"+dataEntrante.getClave()
+        return ResponseEntity.status(HttpStatus.OK).body("Hola desde SegundoController Ejecute la funcionTres con Nombre:"
         );
     }
 
