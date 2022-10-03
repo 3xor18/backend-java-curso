@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UsuarioParaGuardarDto {
-
+public class UsuarioParaCrear {
     private String nombre;
     private String clave;
 }

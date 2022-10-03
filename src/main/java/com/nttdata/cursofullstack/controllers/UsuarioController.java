@@ -1,6 +1,6 @@
-package com.nttdata.cursofullstack.controller;
+package com.nttdata.cursofullstack.controllers;
 
-import com.nttdata.cursofullstack.dtos.UsuarioParaGuardarDto;
+import com.nttdata.cursofullstack.dtos.UsuarioParaCrear;
 import com.nttdata.cursofullstack.services.UsuarioService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -19,10 +19,14 @@ public class UsuarioController {
         this.service = service;
     }
 
+
     @PostMapping
-   public ResponseEntity<?> guardar(@RequestBody UsuarioParaGuardarDto dataEntrante){
-       return service.save(dataEntrante);
-   }
+    public ResponseEntity<?> crear(@RequestBody UsuarioParaCrear dataEntrante){
+        return service.crearDesdeElService(dataEntrante);
+    }
 
-
+    @GetMapping
+    public ResponseEntity<?> consultar(){
+        return ResponseEntity.status(HttpStatus.OK).body("Hola Desde El usuario Controller metodo consultar");
+    }
 }
