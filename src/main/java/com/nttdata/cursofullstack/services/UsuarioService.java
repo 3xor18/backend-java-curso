@@ -14,4 +14,6 @@ public interface UsuarioService {
     public ResponseEntity<?> actualizar(Long idActualizar,UsuarioParaCrear data);
 
     public ResponseEntity<?> borrar(Long id);
+
+    public ResponseEntity<?> buscarPorNombre(String nombre,String clave);
 }

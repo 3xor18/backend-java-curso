@@ -18,7 +18,6 @@ public class UsuarioController {
         this.service = service;
     }
 
-
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody UsuarioParaCrear dataEntrante){
         return service.crearDesdeElService(dataEntrante);
@@ -34,7 +33,6 @@ public class UsuarioController {
         return service.consultarUno(idUsuario);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,@RequestBody UsuarioParaCrear dataEntrante){
         return service.actualizar(id,dataEntrante);
@@ -43,5 +41,10 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrar(@PathVariable Long id){
         return service.borrar(id);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UsuarioParaCrear dataEntrante){
+        return service.buscarPorNombre(dataEntrante.getNombre(),dataEntrante.getClave());
     }
 }

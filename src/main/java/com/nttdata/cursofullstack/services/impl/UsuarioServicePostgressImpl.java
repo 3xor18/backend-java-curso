@@ -32,4 +32,9 @@ public class UsuarioServicePostgressImpl implements UsuarioService {
     public ResponseEntity<?> borrar(Long id) {
         return ResponseEntity.status(HttpStatus.OK).body("Estoy guardando en Postgress");
     }
+
+    @Override
+    public ResponseEntity<?> buscarPorNombre(String nombre,String clave) {
+        return ResponseEntity.status(HttpStatus.OK).body("Estoy guardando en Postgress");
+    }
 }
