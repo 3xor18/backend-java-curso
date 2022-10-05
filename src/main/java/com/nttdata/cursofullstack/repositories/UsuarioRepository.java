@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
-    @Query("SELECT table FROM Usuario table where table.nombre=?1")
+    @Query("SELECT x FROM Usuario x where x.nombre=?1")
     Optional<Usuario> buscarPorNombre(String nombre);
 }
