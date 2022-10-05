@@ -1,5 +1,6 @@
 package com.nttdata.cursofullstack.controllers;
 
+import com.nttdata.cursofullstack.dtos.LibroParaGuardarDto;
 import com.nttdata.cursofullstack.services.LibroService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,9 @@ public class LibroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(){
-        return service.guardar();
+    public ResponseEntity<?> crear(@RequestBody LibroParaGuardarDto dataEntrante){
+        return service.guardar(dataEntrante);
     }
+
+
 }

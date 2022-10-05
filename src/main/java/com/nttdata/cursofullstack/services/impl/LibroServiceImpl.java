@@ -1,5 +1,6 @@
 package com.nttdata.cursofullstack.services.impl;
 
+import com.nttdata.cursofullstack.dtos.LibroParaGuardarDto;
 import com.nttdata.cursofullstack.entities.Libro;
 import com.nttdata.cursofullstack.repositories.LibroRepository;
 import com.nttdata.cursofullstack.services.LibroService;
@@ -19,11 +20,11 @@ public class LibroServiceImpl implements LibroService {
 
 
     @Override
-    public ResponseEntity<?> guardar() {
+    public ResponseEntity<?> guardar(LibroParaGuardarDto dto) {
         //Crear una Nueva Instancia de Libro
         Libro entidad = new Libro();
         //Setear el nombre a "Nuevo Libro"
-        entidad.setNombre("Nuevo Libro");
+        entidad.setNombre(dto.getNombre());
         //Guardar en BD y Leer lo Emitido por el Repository
         Libro guardado=repository.save(entidad);
 
