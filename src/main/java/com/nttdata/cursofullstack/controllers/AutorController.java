@@ -1,7 +1,6 @@
 package com.nttdata.cursofullstack.controllers;
 
 import com.nttdata.cursofullstack.dtos.AutorParaGuardar;
-import com.nttdata.cursofullstack.dtos.CursoParaCrearDto;
 import com.nttdata.cursofullstack.services.AutorService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,6 @@ public class AutorController {
     public AutorController(AutorService service) {
         this.service = service;
     }
-
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody AutorParaGuardar dto){
