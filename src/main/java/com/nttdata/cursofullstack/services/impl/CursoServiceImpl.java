@@ -4,6 +4,7 @@ import com.nttdata.cursofullstack.dtos.CursoEditarPorNombre;
 import com.nttdata.cursofullstack.dtos.CursoParaCrearDto;
 import com.nttdata.cursofullstack.entities.Curso;
 import com.nttdata.cursofullstack.entities.Usuario;
+import com.nttdata.cursofullstack.exceptions.personalizados.DataNoEncontrada;
 import com.nttdata.cursofullstack.repositories.CursoRepository;
 import com.nttdata.cursofullstack.services.CursoService;
 import org.springframework.http.HttpStatus;
@@ -42,9 +43,17 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public ResponseEntity<?> consultarPorId(Long id) {
-        //Ocupar El Repository con el metodo Buscar Por ID
-        Curso cursoEnBD=repository.findById(id).orElse(null);
-        return ResponseEntity.status(HttpStatus.OK).body(cursoEnBD);
+        try{
+            Curso cursoEnBD=repository.findById(id)
+                    .orElseThrow(()-> new DataNoEncontrada("No Encontre El Curso"));
+            return ResponseEntity.status(HttpStatus.OK).body(cursoEnBD);
+        }
+        catch (DataNoEncontrada e){
+            return ResponseEntity.status(e.getResponseCode()).body(e.getMessage());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @Override

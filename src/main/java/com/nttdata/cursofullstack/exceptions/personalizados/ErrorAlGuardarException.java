@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
-public class ErrorInternoException  extends GlobalExceptionApp {
+public class ErrorAlGuardarException  extends GlobalExceptionApp {
 
-    public ErrorInternoException(String mensaje){
-        super(HttpStatus.INTERNAL_SERVER_ERROR.value(),mensaje);
+    public ErrorAlGuardarException(String mensaje){
+        super(HttpStatus.BAD_REQUEST.value(),mensaje);
     }
 }
