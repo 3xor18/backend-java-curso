@@ -67,10 +67,19 @@ public class AutorServiceImpl implements AutorService {
 
     @Override
     public ResponseEntity<?> modificar(Long idAModificar, AutorParaGuardar data) {
-        Autor autor=repository.findById(idAModificar).orElse(null);
-        autor.setNombre(data.getNombre());
-        Autor autorActualizado=repository.save(autor);
-        return ResponseEntity.status(HttpStatus.OK).body(autorActualizado);
+        try{
+            Autor autor=repository.findById(idAModificar)
+                    .orElseThrow(()-> new DataNoEncontrada("No Encontre El Autor"));
+            autor.setNombre(data.getNombre());
+            Autor autorActualizado=repository.save(autor);
+            return ResponseEntity.status(HttpStatus.OK).body(autorActualizado);
+        }
+        catch (DataNoEncontrada e){
+            return ResponseEntity.status(e.getResponseCode()).body(e.getMessage());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @Override
