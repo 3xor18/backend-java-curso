@@ -3,9 +3,11 @@ package com.nttdata.cursofullstack.services.impl;
 import com.nttdata.cursofullstack.dtos.AutorParaGuardar;
 import com.nttdata.cursofullstack.entities.Autor;
 import com.nttdata.cursofullstack.entities.Curso;
+import com.nttdata.cursofullstack.exceptions.personalizados.AutorNoDisponibleException;
 import com.nttdata.cursofullstack.exceptions.personalizados.DataNoEncontrada;
 import com.nttdata.cursofullstack.repositories.AutorRepository;
 import com.nttdata.cursofullstack.services.AutorService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Log4j2
 public class AutorServiceImpl implements AutorService {
 
     private final AutorRepository repository;
@@ -25,6 +28,10 @@ public class AutorServiceImpl implements AutorService {
     @Override
     public ResponseEntity<?> crear(AutorParaGuardar dto) {
         try{
+            if(dto.getNombre().equals("Gerson")){
+                throw new AutorNoDisponibleException("No se permiten Autores con este Nombre");
+            }
+
             //Crear la Entidad
             Autor autorNoGuardado=new Autor();
             //setear el Nombre desde el DTO
@@ -55,6 +62,11 @@ public class AutorServiceImpl implements AutorService {
         try{
             Autor autor=repository.findById(id)
                     .orElseThrow(()-> new DataNoEncontrada("No Encontre El Autor"));
+
+            if(autor.getNombre().equals("Gerson")){
+                throw new AutorNoDisponibleException("Este Autor no esta Disponible");
+            }
+
             return ResponseEntity.status(HttpStatus.OK).body(autor);
         }
         catch (DataNoEncontrada e){
