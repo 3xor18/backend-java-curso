@@ -25,4 +25,6 @@ public class AutorCurso {
     @JoinColumn(name = "curso_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Curso curso;
+
+    private Long idEstado;
 }
