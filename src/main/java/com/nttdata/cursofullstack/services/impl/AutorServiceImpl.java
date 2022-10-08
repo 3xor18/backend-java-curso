@@ -60,6 +60,10 @@ public class AutorServiceImpl implements AutorService {
     @Override
     public ResponseEntity<?> consultarPorId(Long id) {
         try{
+            log.info("Hola Desde El Micro servicio Viejo");
+            log.info("Estoy buscando algo dentro de la base de datos HolaMundo");
+
+
             Autor autor=repository.findById(id)
                     .orElseThrow(()-> new DataNoEncontrada("No Encontre El Autor"));
 
