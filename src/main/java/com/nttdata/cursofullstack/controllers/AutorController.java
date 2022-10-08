@@ -29,6 +29,11 @@ public class AutorController {
         return service.consultarTodos();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<?> consultarUno(@PathVariable Long id){
         return service.consultarPorId(id);
